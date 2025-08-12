@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:ns21="http://example.com/delivery"
+           targetNamespace="http://example.com/delivery"
+           elementFormDefault="qualified">
+
+  <!-- Root element -->
+  <xs:element name="Delivery">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="DeliveryHeader">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DeliveryType" type="xs:string"/>
+              <xs:element name="ParentDeliveryNumber" type="xs:string" minOccurs="0"/>
+              <xs:element name="DeliveryNumber" type="xs:string"/>
+              <xs:element name="DeliveryDate" type="xs:date"/>
+              <xs:element name="EventList" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Event" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="eventID" type="xs:string"/>
+                          <xs:element name="eventDate" type="xs:date"/>
+                          <xs:element name="eventDescription" type="xs:string"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DeliveryItemList">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DeliveryItem" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="DistributionCenter" type="xs:string"/>
+                    <xs:element name="StorageLocation" type="xs:string"/>
+                    <xs:element name="MaterialNumber" type="xs:string"/>
+                    <xs:element name="Quantity" type="xs:decimal"/>
+                    <xs:element name="UnitOfMeasure" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

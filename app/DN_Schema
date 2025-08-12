@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="DeliveryNote" type="DeliveryNoteType" />
+	<xs:complexType name="DeliveryNoteType">
+		<xs:sequence>
+			<xs:element name="MsgCtx" type="MsgCtxType" minOccurs="0"/>
+			<xs:element name="Delivery" type="DeliveryType" minOccurs="0"/>
+			<xs:element name="SalesOrder" type="SalesOrderType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PartnerType">
+		<xs:sequence>
+			<xs:element name="PartnerRole" type="xs:string" minOccurs="0"/>
+			<xs:element name="PartnerNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="AddressNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="PartnerAddress" type="PartnerAddressType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PartnerMasterData" type="PartnerMasterDataType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CstmAttrList" type="CstmAttrListType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CstmAttrListType">
+		<xs:sequence>
+			<xs:element name="CstmAttr" type="CstmAttrType" maxOccurs="unbounded" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StatusListType">
+		<xs:sequence>
+			<xs:element name="Status" type="StatusType" maxOccurs="unbounded" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SalesOrderLineListType" >
+		<xs:sequence>
+			<xs:element name="SalesOrderLineItem" type="SalesOrderLineItemType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="QuantityListType">
+		<xs:sequence>
+			<xs:element name="QuantityList" maxOccurs="unbounded" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="category" type="xs:string" minOccurs="0"/>
+						<xs:element name="value" type="xs:string" minOccurs="0"/>
+						<xs:element name="uom" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PartnerAddressType">
+		<xs:sequence>
+			<xs:element name="PartnerRole" type="xs:string" minOccurs="0"/>
+			<xs:element name="PartnerNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="Title" type="xs:string" minOccurs="0"/>
+			<xs:element name="AddressIndicator" type="xs:string" minOccurs="0"/>
+			<xs:element name="Name1" type="xs:string" minOccurs="0"/>
+			<xs:element name="Name2" type="xs:string" minOccurs="0"/>
+			<xs:element name="Name3" type="xs:string" minOccurs="0"/>
+			<xs:element name="Name4" type="xs:string" minOccurs="0"/>
+			<xs:element name="Street" type="xs:string" minOccurs="0"/>
+			<xs:element name="PostCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="City" type="xs:string" minOccurs="0"/>
+			<xs:element name="CountryCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="CountryDesc" type="xs:string" minOccurs="0"/>
+			<xs:element name="RegionCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="FaxNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="Email" type="xs:string" minOccurs="0"/>
+			<xs:element name="PhoneNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="CareOfName" type="xs:string" minOccurs="0"/>
+			<xs:element name="Street2" type="xs:string" minOccurs="0"/>
+			<xs:element name="Street3" type="xs:string" minOccurs="0"/>
+			<xs:element name="Street4" type="xs:string" minOccurs="0"/>
+			<xs:element name="Street5" type="xs:string" minOccurs="0"/>
+			<xs:element name="HouseNum" type="xs:string" minOccurs="0"/>
+			<xs:element name="AccountNumberOfVendor" type="xs:string" minOccurs="0"/>
+			<xs:element name="ValidationFlag" type="xs:string" minOccurs="0"/>
+			<xs:element name="StreetAndHouse" type="xs:string" minOccurs="0"/>
+			<xs:element name="BuyingGroupMemberShip" type="xs:string" minOccurs="0"/>
+			<xs:element name="HouseNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="HouseNoSuppl" type="xs:string" minOccurs="0"/>
+			<xs:element name="AddressRemark" type="xs:string" minOccurs="0"/>
+			<xs:element name="District" type="xs:string" minOccurs="0"/>
+			<xs:element name="CstmAttrList" type="CstmAttrListType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PartnerMasterDataType">
+		<xs:sequence>
+			<xs:element name="countrycode" type="xs:string" minOccurs="0"/>
+			<xs:element name="extId" type="xs:string" minOccurs="0"/>
+			<xs:element name="vatRegNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="ShipToArea" type="xs:string" minOccurs="0"/>
+			<xs:element name="cityCoordinates" type="xs:string" minOccurs="0"/>
+			<xs:element name="phoneNO" type="xs:string" minOccurs="0"/>
+			<xs:element name="faxNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="custGrp1" type="xs:string" minOccurs="0"/>
+			<xs:element name="custGrp3" type="xs:string" minOccurs="0"/>
+			<xs:element name="langKey" type="xs:string" minOccurs="0"/>
+			<xs:element name="custGrp4" type="xs:string" minOccurs="0"/>
+			<xs:element name="custGrp5" type="xs:string" minOccurs="0"/>
+			<xs:element name="taxNbr1" type="xs:string" minOccurs="0"/>
+			<xs:element name="taxNbr2" type="xs:string" minOccurs="0"/>
+			<xs:element name="taxNbr3" type="xs:string" minOccurs="0"/>
+			<xs:element name="custGrp2" type="xs:string" minOccurs="0"/>
+			<xs:element name="poBox" type="xs:string" minOccurs="0"/>
+			<xs:element name="poBoxPostCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="intlLocNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="intlLocNo1" type="xs:string" minOccurs="0"/>
+			<xs:element name="inlChkDigit" type="xs:string" minOccurs="0"/>
+			<xs:element name="accountAtCustomer" type="xs:string" minOccurs="0"/>
+			<xs:element name="CstmAttrList" type="CstmAttrListType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PriceCondListType">
+		<xs:sequence>
+			<xs:element name="priceCondition" type="priceConditionType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="priceConditionType">
+		<xs:sequence>
+			<xs:element name="conditionType" type="xs:string" minOccurs="0"/>
+			<xs:element name="conditionClass" type="xs:string" minOccurs="0"/>
+			<xs:element name="calculationType" type="xs:string" minOccurs="0"/>
+			<xs:element name="pricingUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="delectionFlag" minOccurs="0"/>
+			<xs:element name="conditionUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="description" type="xs:string" minOccurs="0"/>
+			<xs:element name="conditionRate" minOccurs="0"/>
+			<xs:element name="unitOfMeasure" type="xs:string" minOccurs="0"/>
+			<xs:element name="conditionValue" type="xs:string" minOccurs="0"/>
+			<xs:element name="conditionCurrencyValue" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="currency" type="xs:string" minOccurs="0"/>
+						<xs:element name="currencyType" type="xs:string" minOccurs="0"/>
+						<xs:element name="unitOfMeasure" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CstmAttrList" type="CstmAttrListType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="validity" type="validityType" minOccurs="0"/>
+			<xs:element name="referenceList" type="referenceListType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="validityType">
+		<xs:sequence>
+			<xs:element name="purpose" type="xs:string" minOccurs="0"/>
+			<xs:element name="validFrom" type="xs:string" minOccurs="0"/>
+			<xs:element name="validTo" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="referenceListType">
+		<xs:sequence>
+			<xs:element name="referenceDocument" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="key" type="xs:string" minOccurs="0"/>
+						<xs:element name="value" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DateListType">
+		<xs:sequence>
+			<xs:element name="DateList" maxOccurs="unbounded" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="category" type="xs:string" minOccurs="0"/>
+						<xs:element name="dateValue" type="xs:string" minOccurs="0"/>
+						<xs:element name="qualf" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SalesOrderLineItemType" >
+		<xs:sequence>
+			<xs:element name="DocumentType" type="xs:string" minOccurs="0"/>
+			<xs:element name="SalesOrderNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="SalesOrderItem" type="xs:string" minOccurs="0"/>
+			<xs:element name="SalesOrderLine" type="xs:string" minOccurs="0"/>
+			<xs:element name="SizeIndex" type="xs:string" minOccurs="0"/>
+			<xs:element name="CstmAttrList" type="CstmAttrListType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DateList" type="DateListType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="QuantityList" type="QuantityListType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="EANType" type="xs:string" minOccurs="0"/>
+			<xs:element name="EANCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="OrderedQuantity" type="xs:string" minOccurs="0"/>
+			<xs:element name="ConfirmedQuantity" type="xs:string" minOccurs="0"/>
+			<xs:element name="CancelledQuantity" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReturnedQuantity" type="xs:string" minOccurs="0"/>
+			<xs:element name="LocalSize" type="xs:string" minOccurs="0"/>
+			<xs:element name="eComStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReasonCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="CustomerSKUNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="ExternalLineNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="TextList" type="TextListType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ValueAddedServicesList" type="ValueAddedServicesListType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SalesOrderItemType" >
+		<xs:sequence>
+			<xs:element name="confDelvDate" type="xs:string" minOccurs="0"/>
+			<xs:element name="DocumentType" type="xs:string" minOccurs="0"/>
+			<xs:element name="SalesOrderNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="SalesOrderItem" type="xs:string" minOccurs="0"/>
+			<xs:element name="ArticleNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="SalesOrderLineList" type="SalesOrderLineListType" minOccurs="0"/>
+			<xs:element name="DeliveryNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="InvoiceNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="DeliveringDC" type="xs:string" minOccurs="0"/>
+			<xs:element name="ShipType" type="xs:string" minOccurs="0"/>
+			<xs:element name="PaymentTerms" type="xs:string" minOccurs="0"/>
+			<xs:element name="PaymentMethod" type="xs:string" minOccurs="0"/>
+			<xs:element name="eComStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReasonCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="Division" type="xs:string" minOccurs="0"/>
+			<xs:element name="ShippingType" type="xs:string" minOccurs="0"/>
+			<xs:element name="ShippingTypeDesc" type="xs:string" minOccurs="0"/>
+			<xs:element name="RequestedDeliveryDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="CustomerPurchaseOrderNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="CustomerPurchaseOrderType" type="xs:string" minOccurs="0"/>
+			<xs:element name="CustomerPurchaseOrderDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="CustomerArticleNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="ShortText" type="xs:string" minOccurs="0"/>
+			<xs:element name="OrderedQuantity" type="xs:string" minOccurs="0"/>
+			<xs:element name="ConfirmedQuantity" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReferenceNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="ShippingStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="CancelStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="PaymentStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="PartnerList" type="PartnerListType" minOccurs="0"/>
+			<xs:element name="TextList" type="TextListType" minOccurs="0"/>
+			<xs:element name="CaseLotList" type="CaseLotListType" minOccurs="0"/>
+			<xs:element name="PriceCondList" type="PriceCondListType" minOccurs="0"/>
+			<xs:element name="DocOrder" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PredsrDocs">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="DocumentRef" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="docType" type="xs:string" minOccurs="0"/>
+												<xs:element name="docNbr" type="xs:string" minOccurs="0"/>
+												<xs:element name="docItem" type="xs:string" minOccurs="0"/>
+												<xs:element name="docLine" type="xs:string" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CstmAttrList" type="CstmAttrListType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DateList" type="DateListType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="QuantityList" type="QuantityListType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ValueAddedServicesList" type="ValueAddedServicesListType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PaymentCardInformationListType" >
+		<xs:sequence>
+			<xs:element name="BillingPlanNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="BillingPlanItem" type="xs:string" minOccurs="0"/>
+			<xs:element name="CardType" type="xs:string" minOccurs="0"/>
+			<xs:element name="CardTypeDec" type="xs:string" minOccurs="0"/>
+			<xs:element name="CardNo" type="SalesOrderLineListType" minOccurs="0"/>
+			<xs:element name="CardSuffix" type="xs:string" minOccurs="0"/>
+			<xs:element name="ValidTo" type="xs:string" minOccurs="0"/>
+			<xs:element name="ValidFrom" type="xs:string" minOccurs="0"/>
+			<xs:element name="ResultText" type="xs:string" minOccurs="0"/>
+			<xs:element name="AuthorizationNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="AuthorizationReference" type="xs:string" minOccurs="0"/>
+			<xs:element name="AuthorizedAmount" type="xs:string" minOccurs="0"/>
+			<xs:element name="BillingAmount" type="SalesOrderLineListType" minOccurs="0"/>
+			<xs:element name="NameOfCardHoder" type="xs:string" minOccurs="0"/>
+			<xs:element name="PaymentType" type="xs:string" minOccurs="0"/>
+			<xs:element name="CstmAttrList" type="CstmAttrListType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SalesOrderHeaderType" >
+		<xs:sequence>
+			<xs:element name="reqItmSplit" type="xs:string" minOccurs="0"/>
+			<xs:element name="dlvBlock" type="xs:string" minOccurs="0"/>
+			<xs:element name="ordrCurrency" type="xs:string" minOccurs="0"/>
+			<xs:element name="localeID" type="xs:string" minOccurs="0"/>
+			<xs:element name="confirmStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="cancelStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="pymntStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="ShipngStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="DocumentType" type="xs:string" minOccurs="0"/>
+			<xs:element name="SalesOrderNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="SalesOrganization" type="xs:string" minOccurs="0"/>
+			<xs:element name="DistributionChannel" type="xs:string" minOccurs="0"/>
+			<xs:element name="SalesOrderType" type="xs:string" minOccurs="0"/>
+			<xs:element name="Division" type="xs:string" minOccurs="0"/>
+			<xs:element name="OrderDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="RequestedDeliveryDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="CancelDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="CustomerPurchaseOrderNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="CustomerPurchaseOrderType" type="xs:string" minOccurs="0"/>
+			<xs:element name="CustomerPOSupplement" type="xs:string" minOccurs="0"/>
+			<xs:element name="CustomerPurchaseOrderDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="CustomerPOLong" type="xs:string" minOccurs="0"/>
+			<xs:element name="OrderEntryType" type="xs:string" minOccurs="0"/>
+			<xs:element name="SizeConvId" type="xs:string" minOccurs="0"/>
+			<xs:element name="Status" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReasonCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="BillingPlanNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="BillingPlanItem" type="xs:string" minOccurs="0"/>
+			<xs:element name="ShippingConditions" type="xs:string" minOccurs="0"/>
+			<xs:element name="ShippingType" type="xs:string" minOccurs="0"/>
+			<xs:element name="ShippingTypeDesc" type="xs:string" minOccurs="0"/>
+			<xs:element name="OrderReason" type="xs:string" minOccurs="0"/>
+			<xs:element name="CustomerGroup5" type="xs:string" minOccurs="0"/>
+			<xs:element name="NameOfOrderer" type="xs:string" minOccurs="0"/>
+			<xs:element name="CustomerReference" type="xs:string" minOccurs="0"/>
+			<xs:element name="SalesOffice" type="xs:string" minOccurs="0"/>
+			<xs:element name="CstmAttrList" type="CstmAttrListType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="QuantityList" type="QuantityListType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TextList" type="TextListType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ValueAddedServicesList" type="ValueAddedServicesListType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PartnerList" type="PartnerListType" minOccurs="0"/>
+			<xs:element name="DateList" type="DateListType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PriceCondList" type="PriceCondListType" minOccurs="0"/>
+			<xs:element name="DocOrder" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PredsrDocs">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="DocumentRef" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="docType" type="xs:string" minOccurs="0"/>
+												<xs:element name="docNbr" type="xs:string" minOccurs="0"/>
+												<xs:element name="docItem" type="xs:string" minOccurs="0"/>
+												<xs:element name="docLine" type="xs:string" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SalesOrderType" >
+		<xs:sequence>
+			<xs:element name="SalesOrderHeader" type="SalesOrderHeaderType" minOccurs="0"/>
+			<xs:element name="SalesOrderItemList" type="SalesOrderItemListType" minOccurs="0"/>
+			<xs:element name="PaymentCardInfo" type="PaymentCardInfoType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CstmAttrType">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="0"/>
+			<xs:element name="dataType" type="xs:string" minOccurs="0"/>
+			<xs:element name="addendum" type="xs:string" minOccurs="0"/>
+			<xs:element name="AttrValue" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StatusType">
+		<xs:sequence>
+			<xs:element name="code" type="xs:string" minOccurs="0"/>
+			<xs:element name="desc" type="xs:string" minOccurs="0"/>
+			<xs:element name="lang" type="xs:string" minOccurs="0"/>
+			<xs:element name="category" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SalesOrderItemListType" >
+		<xs:sequence>
+			<xs:element name="SalesOrderItem" type="SalesOrderItemType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="HandlingUnitList" type="HandlingUnitListType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PaymentCardInfoType" >
+		<xs:sequence>
+			<xs:element name="PaymentCardInformationList" type="PaymentCardInformationListType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PartnerListType">
+		<xs:sequence>
+			<xs:element name="Partner" type="PartnerType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MsgCtxType" >
+		<xs:all>
+			<xs:element name="MetaData" type="MetaDataType" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="MetaDataType" >
+		<xs:sequence>
+			<xs:element name="referenceDocument" type="referenceDocumentType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="referenceDocumentType">
+		<xs:all>
+			<xs:element name="value" type="xs:string" minOccurs="0"/>
+			<xs:element name="key" type="xs:string" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="DeliveryHeaderType" >
+		<xs:sequence>
+			<xs:element name="DocumentType" type="xs:string" minOccurs="0"/>
+			<xs:element name="DeliveryNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="DeliveryStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="SalesOrganization" type="xs:string" minOccurs="0"/>
+			<xs:element name="DistributionChannel" type="xs:string" minOccurs="0"/>
+			<xs:element name="Division" type="xs:string" minOccurs="0"/>
+			<xs:element name="Creationtime" type="xs:string" minOccurs="0"/>
+			<xs:element name="ShippingPoint" type="xs:string" minOccurs="0"/>
+			<xs:element name="ShippingType" type="xs:string" minOccurs="0"/>
+			<xs:element name="OverallDeliveryStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="BillOfLadingNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="TotalWeight" type="xs:string" minOccurs="0"/>
+			<xs:element name="Netweight" type="xs:string" minOccurs="0"/>
+			<xs:element name="WeightUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="Totalvolume" type="xs:string" minOccurs="0"/>
+			<xs:element name="VolumeUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="TotalNumberOfPackages" type="xs:string" minOccurs="0"/>
+			<xs:element name="MeansOfTransportType" type="xs:string" minOccurs="0"/>
+			<xs:element name="MeansOfTransportId" type="xs:string" minOccurs="0"/>
+			<xs:element name="DocumentDateInDocument" type="xs:string" minOccurs="0"/>
+			<xs:element name="AdditionalDateQualifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="ParentDeliveryGroup" type="xs:string" minOccurs="0"/>
+			<xs:element name="DeliveryType" type="xs:string" minOccurs="0"/>
+			<xs:element name="SpecialHandlingIndicator" type="xs:string" minOccurs="0"/>
+			<xs:element name="ExportIndicator" type="xs:string" minOccurs="0"/>
+			<xs:element name="IncoTermsPart1" type="xs:string" minOccurs="0"/>
+			<xs:element name="IncoTermsPart2" type="xs:string" minOccurs="0"/>
+			<xs:element name="ExternalIdentification" type="xs:string" minOccurs="0"/>
+			<xs:element name="ShippingConditions" type="xs:string" minOccurs="0"/>
+			<xs:element name="LocalDeliveryPriority" type="xs:string" minOccurs="0"/>
+			<xs:element name="ParentDeliveryNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="OriginalDeliveryPriority" type="xs:string" minOccurs="0"/>
+			<xs:element name="SDDocumentCurrency" type="xs:string" minOccurs="0"/>
+			<xs:element name="TransitTimeFromGI" type="xs:string" minOccurs="0"/>
+			<xs:element name="TransitDurationDays" type="xs:string"/>
+			<xs:element name="TransportationLeadTime" type="xs:string" minOccurs="0"/>
+			<xs:element name="TransportationLeadTimeDays" type="xs:string" minOccurs="0"/>
+			<xs:element name="ArrivaltimeFrom1" type="xs:string" minOccurs="0"/>
+			<xs:element name="ArrivaltimeTo1" type="xs:string" minOccurs="0"/>
+			<xs:element name="ArrivaltimeFrom2" type="xs:string" minOccurs="0"/>
+			<xs:element name="ArrivaltimeTo2" type="xs:string" minOccurs="0"/>
+			<xs:element name="WarehouseProcessingLeadTime" type="xs:string" minOccurs="0"/>
+			<xs:element name="ActualPackingDate" type="xs:string" minOccurs="0"/>
+			<xs:element name="MultiFlagShip" type="xs:string" minOccurs="0"/>
+			<xs:element name="Loadingdate" type="xs:string" minOccurs="0"/>
+			<xs:element name="TransportPlanningDate" type="xs:string" minOccurs="0"/>
+			<xs:element name="ForwardingAgent" type="xs:string" minOccurs="0"/>
+			<xs:element name="TotalQuantity" type="xs:string" minOccurs="0"/>
+			<xs:element name="LoadId" type="xs:string" minOccurs="0"/>
+			<xs:element name="ConsolidatorId" type="xs:string" minOccurs="0"/>
+			<xs:element name="PRONumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="DNCount" type="xs:string" minOccurs="0"/>
+			<xs:element name="TralierNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="MasterBOL" type="xs:string" minOccurs="0"/>
+			<xs:element name="ShippingTime" type="xs:string" minOccurs="0"/>
+			<xs:element name="ExportFlag" type="xs:string" minOccurs="0"/>
+			<xs:element name="osGoodsmovementDate" type="xs:string" minOccurs="0"/>
+			<xs:element name="osDeliveryDate" type="xs:string" minOccurs="0"/>
+			<xs:element name="osPickingDate" type="xs:string" minOccurs="0"/>
+			<xs:element name="osServiceLevel" type="xs:string" minOccurs="0"/>
+			<xs:element name="TextList" type="TextListType" minOccurs="0"/>
+			<xs:element name="ValueAddedServicesList" type="ValueAddedServicesListType" minOccurs="0"/>
+			<xs:element name="PartnerList" type="PartnerListType" minOccurs="0"/>
+			<xs:element name="PriceCondList" type="PriceCondListType" minOccurs="0"/>
+			<xs:element name="QuantityList" type="QuantityListType" minOccurs="0"/>
+			<xs:element name="CstmAttrList" type="CstmAttrListType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DateList" type="DateListType" minOccurs="0"/>
+			<xs:element name="EventList" type="EventListType" minOccurs="0"/>
+			<xs:element name="DocOrder" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PredsrDocs">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="DocumentRef" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="docType" type="xs:string" minOccurs="0"/>
+												<xs:element name="docNbr" type="xs:string" minOccurs="0"/>
+												<xs:element name="docItem" type="xs:string" minOccurs="0"/>
+												<xs:element name="docLine" type="xs:string" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="StatusList" type="StatusListType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EventListType">
+		<xs:sequence>
+			<xs:element name="Event" type="EventType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TextListType">
+		<xs:sequence>
+			<xs:element name="text" type="textType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ValueAddedServicesListType">
+		<xs:sequence>
+			<xs:element name="valueAddedService" type="valueAddedServiceType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="textType">
+		<xs:sequence>
+			<xs:element name="lineCount" type="xs:string" minOccurs="0"/>
+			<xs:element name="text" type="xs:string" minOccurs="0"/>
+			<xs:element name="textType" type="xs:string" minOccurs="0"/>
+			<xs:element name="lan" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DeliveryItemType">
+		<xs:sequence>
+			<xs:element name="DocumentType" type="xs:string" minOccurs="0"/>
+			<xs:element name="DeliveryNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="DeliveryItem" type="xs:string" minOccurs="0"/>
+			<xs:element name="DeliveryLine" type="xs:string" minOccurs="0"/>
+			<xs:element name="LocalSizeDescription" type="xs:string" minOccurs="0"/>
+			<xs:element name="ValueAddedServicesList" type="ValueAddedServicesListType" minOccurs="0"/>
+			<xs:element name="CstmAttrList" type="CstmAttrListType" minOccurs="0"/>
+			<xs:element name="ReferenceDocument" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReferenceDocumentItem" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReferenceDocumentLine" type="xs:string" minOccurs="0"/>
+			<xs:element name="RequestedDeliveryDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="DistributionCenter" type="xs:string" minOccurs="0"/>
+			<xs:element name="ArticleNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="SourcingSizeScale" type="xs:string" minOccurs="0"/>
+			<xs:element name="SalesSizeScale" type="xs:string" minOccurs="0"/>
+			<xs:element name="MaterialId" type="xs:string" minOccurs="0"/>
+			<xs:element name="CustomerDepartment" type="xs:string" minOccurs="0"/>
+			<xs:element name="DeliveryItemCategory" type="xs:string" minOccurs="0"/>
+			<xs:element name="LocalDeliveryPriority" type="xs:string" minOccurs="0"/>
+			<xs:element name="CarrierCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="CustomerArticleNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="HigherLevelSBOMItem" type="xs:string" minOccurs="0"/>
+			<xs:element name="SpecialStockIndicator" type="xs:string" minOccurs="0"/>
+			<xs:element name="ProductDivision" type="xs:string" minOccurs="0"/>
+			<xs:element name="PartialDeliveryAllowed" type="xs:string" minOccurs="0"/>
+			<xs:element name="ItemCurrency" type="xs:string" minOccurs="0"/>
+			<xs:element name="BusinessUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="MaterialGroup3" type="xs:string" minOccurs="0"/>
+			<xs:element name="RetailIntroDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="BrandCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="VASProcessingTime" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="WarehouseProcessingTime" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="SourcingSizeCd3" type="xs:string" minOccurs="0"/>
+			<xs:element name="SourcingSizeCd2" type="xs:string" minOccurs="0"/>
+			<xs:element name="SalesSizeDescription" type="xs:string" minOccurs="0"/>
+			<xs:element name="MaterialAvailabilityDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="WarehouseDeliveryDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="DeliveryQuantity" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="ActualDeliveredQuantity" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="SalesUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="GrossWeight" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="WeightUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="Volume" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="VolumeUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="PickingStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="GoodsMovementStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="StockCategory" type="xs:string" minOccurs="0"/>
+			<xs:element name="StorageLocation" type="xs:string" minOccurs="0"/>
+			<xs:element name="InternationalArticleNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="InternationalArticleNumber_UPC" type="xs:string" minOccurs="0"/>
+			<xs:element name="RetailerSKU" type="xs:string" minOccurs="0"/>
+			<xs:element name="RetailerSize" type="xs:string" minOccurs="0"/>
+			<xs:element name="RetailerProductGroup" type="xs:string" minOccurs="0"/>
+			<xs:element name="RetailerColour" type="xs:string" minOccurs="0"/>
+			<xs:element name="RetailerDepartment" type="xs:string" minOccurs="0"/>
+			<xs:element name="CustomsStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="CountryOfOrigin" type="xs:string" minOccurs="0"/>
+			<xs:element name="LVS_Id" type="xs:string" minOccurs="0"/>
+			<xs:element name="ItemName" type="xs:string" minOccurs="0"/>
+			<xs:element name="PriceCondList" type="PriceCondListType" minOccurs="0"/>
+			<xs:element name="DateList" type="DateListType" minOccurs="0"/>
+			<xs:element name="QuantityList" type="QuantityListType" minOccurs="0"/>
+			<xs:element name="StatusList" type="StatusListType" minOccurs="0"/>
+			<xs:element name="CaseLotList" type="CaseLotListType" minOccurs="0"/>
+			<xs:element name="TextList" type="TextListType"/>
+			<xs:element name="DocOrder" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PredsrDocs">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="DocumentRef" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="docType" type="xs:string" minOccurs="0"/>
+												<xs:element name="docNbr" type="xs:string" minOccurs="0"/>
+												<xs:element name="docItem" type="xs:string" minOccurs="0"/>
+												<xs:element name="docLine" type="xs:string" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CaseLotHeaderType">
+		<xs:sequence>
+			<xs:element name="CstmAttrList" type="CstmAttrListType" minOccurs="0"/>
+			<xs:element name="LineCount" type="xs:string"/>
+			<xs:element name="CaseLotDescription" type="xs:string"/>
+			<xs:element name="NoOfCaseLots" type="xs:string"/>
+			<xs:element name="NoOfUnits" type="xs:string"/>
+			<xs:element name="NoOfPolyBags" type="xs:string"/>
+			<xs:element name="QtyPerCarton" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CaseLotType">
+		<xs:sequence>
+			<xs:element name="CaseLotHeader" type="CaseLotHeaderType" maxOccurs="unbounded"/>
+			<xs:element name="CaseLotItem" type="CaseLotItemType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CaseLotListType">
+		<xs:sequence>
+			<xs:element name="CaseLot" type="CaseLotType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CaseLotItemType">
+		<xs:sequence>
+			<xs:element name="CstmAttrList" type="CstmAttrListType" minOccurs="0"/>
+			<xs:element name="DocumentLine" type="xs:string"/>
+			<xs:element name="LineCount" type="xs:string"/>
+			<xs:element name="SizeIndex" type="xs:string"/>
+			<xs:element name="CaseLotQuantity" type="xs:string"/>
+			<xs:element name="BaseUnitOfMeasure" type="xs:string"/>
+			<xs:element name="CumulativeQty" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="valueAddedServiceType">
+		<xs:sequence>
+			<xs:element name="vasType" type="xs:string" minOccurs="0"/>
+			<xs:element name="vasCode" type="xs:byte" minOccurs="0"/>
+			<xs:element name="vasCodeDesc" type="xs:string" minOccurs="0"/>
+			<xs:element name="vasMaterial" type="xs:string" minOccurs="0"/>
+			<xs:element name="vasField1" type="xs:string" minOccurs="0"/>
+			<xs:element name="vasField2" type="xs:string" minOccurs="0"/>
+			<xs:element name="vasField3" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EventType">
+		<xs:sequence>
+			<xs:element name="EventId" type="xs:string" minOccurs="0"/>
+			<xs:element name="VersionType" type="xs:string" minOccurs="0"/>
+			<xs:element name="StartDate" type="xs:string" minOccurs="0"/>
+			<xs:element name="StartTimeZone" type="xs:string" minOccurs="0"/>
+			<xs:element name="EndDate" type="xs:string" minOccurs="0"/>
+			<xs:element name="EndTimeZone" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DeliveryItemListType">
+		<xs:sequence>
+			<xs:element name="DeliveryItem" type="DeliveryItemType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="HandlingUnitList" type="HandlingUnitListType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HandlingUnitListType" >
+		<xs:sequence>
+			<xs:element name="HandlingUnit" type="HandlingUnitType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HandlingUnitType">
+		<xs:sequence>
+			<xs:element name="HandlingUnitHeader" type="HandlingUnitHeaderType" minOccurs="0"/>
+			<xs:element name="HandlingUnitItem" type="HandlingUnitItemType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HandlingUnitHeaderType">
+		<xs:sequence>
+			<xs:element name="dmUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="description" type="xs:string" minOccurs="0"/>
+			<xs:element name="HandlingUnitNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="ExternalHandlingUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="ShippmentNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="WarehouseTrackingNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="ParcelTrackingNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="MeansOfTransportType" type="xs:string" minOccurs="0"/>
+			<xs:element name="MeansOfTransportDec" type="xs:string" minOccurs="0"/>
+			<xs:element name="TotalVolume" type="xs:string" minOccurs="0"/>
+			<xs:element name="TotalWeight" type="xs:string" minOccurs="0"/>
+			<xs:element name="Netweight" type="xs:string" minOccurs="0"/>
+			<xs:element name="VolumeUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="WeightUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="Length" type="xs:string" minOccurs="0"/>
+			<xs:element name="Width" type="xs:string" minOccurs="0"/>
+			<xs:element name="Hight" type="xs:string" minOccurs="0"/>
+			<xs:element name="Quantity" type="xs:string" minOccurs="0"/>
+			<xs:element name="PackingMaterialType" type="xs:string" minOccurs="0"/>
+			<xs:element name="CstmAttrList" type="CstmAttrListType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HandlingUnitItemType">
+		<xs:sequence>
+			<xs:element name="pkgLevel" type="xs:string" minOccurs="0"/>
+			<xs:element name="lowerLevelHU" type="xs:string" minOccurs="0"/>
+			<xs:element name="HandlingUnitNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="HandlingUnitItemNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="DocumentType" type="xs:string" minOccurs="0"/>
+			<xs:element name="DocumentNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="DocumentItem" type="xs:string" minOccurs="0"/>
+			<xs:element name="DocumentLine" type="xs:string" minOccurs="0"/>
+			<xs:element name="ArticleNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="CartonQuantity" type="xs:string" minOccurs="0"/>
+			<xs:element name="SourcingSizeCd3" type="xs:string" minOccurs="0"/>
+			<xs:element name="SalesSizeDescription" type="xs:string" minOccurs="0"/>
+			<xs:element name="CustomStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="CountryOfOrigin" type="xs:string" minOccurs="0"/>
+			<xs:element name="LVS_Id" type="xs:string" minOccurs="0"/>
+			<xs:element name="StockCategory" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReferenceDocument" type="xs:string" minOccurs="0"/>
+			<xs:element name="CstmAttrList" type="CstmAttrListType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DeliveryType">
+		<xs:sequence>
+			<xs:element name="DeliveryHeader" type="DeliveryHeaderType" minOccurs="0"/>
+			<xs:element name="DeliveryItemList" type="DeliveryItemListType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+    <xs:element name="Delivery" type="Delivery_Type"></xs:element>
+
+    <xs:complexType name="Delivery_Type">
+    	<xs:sequence>
+    		<xs:element name="DeliveryNote" type="DeliveryNoteType"></xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+</xs:schema>
