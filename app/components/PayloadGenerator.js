@@ -684,7 +684,7 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
                       🎯 Add Filter Conditions (Optional)
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      Enter simple conditions like &quot;price {'<'} 500&quot; or complex XPath expressions like &quot;not(DeliveryType=&quot;ZLR'&quot;) to control the generated data.
+                      Enter simple conditions like &quot;price {'<'} 500&quot; or complex XPath expressions like &quot;not(DeliveryType=&quot;ZLR&quot;) to control the generated data.
                     </Typography>
                   </Box>
                 </Box>
