@@ -72,15 +72,15 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
     try {
       // Read the XSD file
       const fileContent = await readFileContent(schemaFile);
-      
+
       // Parse the XSD schema
       const parser = new XSDParser();
       const schema = await parser.parse(fileContent);
-      
+
       // Generate payload
       const generator = new PayloadGeneratorUtil();
       const payload = generator.generate(schema, filterCondition, outputFormat);
-      
+
       setGeneratedPayload(payload);
       setSuccess(true);
     } catch (err) {
@@ -104,7 +104,7 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
 
     const extension = outputFormat === 'json' ? 'json' : 'xml';
     const mimeType = outputFormat === 'json' ? 'application/json' : 'application/xml';
-    
+
     const blob = new Blob([generatedPayload], { type: mimeType });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -183,8 +183,8 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
           </Box>
         </Box>
         {onClose && (
-          <IconButton 
-            onClick={onClose} 
+          <IconButton
+            onClick={onClose}
             size="large"
             sx={{
               background: 'rgba(0,0,0,0.05)',
@@ -216,7 +216,7 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
               onChange={(e) => setFilterCondition(e.target.value)}
               multiline
               rows={4}
-              sx={{ 
+              sx={{
                 mb: 2,
                 '& .MuiOutlinedInput-root': {
                   background: 'rgba(102, 126, 234, 0.02)',
@@ -274,7 +274,7 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
             <label htmlFor="schema-file-input">
               <Paper
                 component="span"
-                sx={{ 
+                sx={{
                   p: 3,
                   display: 'block',
                   textAlign: 'center',
@@ -282,7 +282,7 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
                   transition: 'all 0.3s ease',
                   border: '2px dashed',
                   borderColor: schemaFile ? 'success.main' : 'primary.main',
-                  background: schemaFile 
+                  background: schemaFile
                     ? 'linear-gradient(45deg, rgba(76, 175, 80, 0.1), rgba(139, 195, 74, 0.1))'
                     : 'linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1))',
                   '&:hover': {
@@ -292,12 +292,12 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
                   }
                 }}
               >
-                <CloudUpload 
-                  sx={{ 
-                    fontSize: 48, 
+                <CloudUpload
+                  sx={{
+                    fontSize: 48,
                     color: schemaFile ? 'success.main' : 'primary.main',
-                    mb: 2 
-                  }} 
+                    mb: 2
+                  }}
                 />
                 <Typography variant="h6" gutterBottom fontWeight={600}>
                   {schemaFile ? schemaFile.name : 'Choose XSD File'}
@@ -364,11 +364,11 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
             <Typography variant="h6" gutterBottom fontWeight={600} color="text.primary">
               🎉 Generated Payload
             </Typography>
-            
+
             {error && (
-              <Alert 
-                severity="error" 
-                sx={{ 
+              <Alert
+                severity="error"
+                sx={{
                   mb: 2,
                   borderRadius: 2,
                   '& .MuiAlert-icon': {
@@ -382,9 +382,9 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
             )}
 
             {success && (
-              <Alert 
-                severity="success" 
-                sx={{ 
+              <Alert
+                severity="success"
+                sx={{
                   mb: 2,
                   borderRadius: 2,
                   background: 'linear-gradient(45deg, rgba(76, 175, 80, 0.1), rgba(139, 195, 74, 0.1))',
@@ -395,9 +395,9 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
                 }}
                 action={
                   <Box sx={{ display: 'flex', gap: 1 }}>
-                    <Button 
-                      color="inherit" 
-                      size="small" 
+                    <Button
+                      color="inherit"
+                      size="small"
                       onClick={handleCopy}
                       startIcon={<ContentCopy />}
                       disabled={copied}
@@ -411,9 +411,9 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
                     >
                       {copied ? 'Copied! ✓' : 'Copy'}
                     </Button>
-                    <Button 
-                      color="inherit" 
-                      size="small" 
+                    <Button
+                      color="inherit"
+                      size="small"
                       onClick={handleDownload}
                       startIcon={<Download />}
                       sx={{
@@ -436,26 +436,26 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
             )}
 
             {generatedPayload && (
-              <Paper 
-                variant="outlined" 
-                sx={{ 
+              <Paper
+                variant="outlined"
+                sx={{
                   background: 'linear-gradient(45deg, rgba(0,0,0,0.02), rgba(102, 126, 234, 0.02))',
                   border: '1px solid rgba(102, 126, 234, 0.2)',
                   borderRadius: 2,
                   overflow: 'hidden'
                 }}
               >
-                <Box sx={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
-                  alignItems: 'center', 
+                <Box sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                   p: 2,
                   background: 'linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1))',
                   borderBottom: '1px solid rgba(102, 126, 234, 0.2)'
                 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Chip 
-                      label={outputFormat.toUpperCase()} 
+                    <Chip
+                      label={outputFormat.toUpperCase()}
                       size="small"
                       sx={{
                         background: 'linear-gradient(45deg, #667eea 30%, #764ba2 90%)',
@@ -468,7 +468,7 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
                     </Typography>
                   </Box>
                   <Box sx={{ display: 'flex', gap: 1 }}>
-                    <IconButton 
+                    <IconButton
                       onClick={handleCopy}
                       size="small"
                       title="Copy to clipboard"
@@ -481,7 +481,7 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
                     >
                       <ContentCopy fontSize="small" />
                     </IconButton>
-                    <IconButton 
+                    <IconButton
                       onClick={handleDownload}
                       size="small"
                       title="Download payload"
@@ -497,8 +497,8 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
                   </Box>
                 </Box>
                 <Box sx={{ p: 2, maxHeight: 400, overflow: 'auto' }}>
-                  <pre style={{ 
-                    margin: 0, 
+                  <pre style={{
+                    margin: 0,
                     fontSize: '0.875rem',
                     fontFamily: 'Monaco, Menlo, "Ubuntu Mono", monospace',
                     whiteSpace: 'pre-wrap',
@@ -513,10 +513,10 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
             )}
 
             {!generatedPayload && !loading && (
-              <Paper 
-                variant="outlined" 
-                sx={{ 
-                  p: 6, 
+              <Paper
+                variant="outlined"
+                sx={{
+                  p: 6,
                   textAlign: 'center',
                   background: 'linear-gradient(45deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05))',
                   border: '2px dashed rgba(102, 126, 234, 0.3)',
@@ -529,30 +529,30 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
                   Your Generated Payload Will Appear Here
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Upload an XSD schema and click "Generate Payload" to see the magic happen ✨
+                  Upload an XSD schema and click &quot;Generate Payload&quot; to see the magic happen ✨
                 </Typography>
               </Paper>
             )}
 
             {loading && (
-              <Paper 
-                variant="outlined" 
-                sx={{ 
-                  p: 6, 
+              <Paper
+                variant="outlined"
+                sx={{
+                  p: 6,
                   textAlign: 'center',
                   background: 'linear-gradient(45deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05))',
                   border: '1px solid rgba(102, 126, 234, 0.2)',
                   borderRadius: 3
                 }}
               >
-                <CircularProgress 
-                  size={60} 
-                  sx={{ 
+                <CircularProgress
+                  size={60}
+                  sx={{
                     mb: 2,
                     '& .MuiCircularProgress-circle': {
                       stroke: 'url(#gradient)',
                     }
-                  }} 
+                  }}
                 />
                 <svg width={0} height={0}>
                   <defs>
@@ -576,7 +576,7 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
 
       {/* Help Section */}
       <Paper
-        sx={{ 
+        sx={{
           mt: 4,
           background: 'linear-gradient(45deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05))',
           border: '1px solid rgba(102, 126, 234, 0.2)',
@@ -584,8 +584,8 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
           overflow: 'hidden'
         }}
       >
-        <Accordion 
-          sx={{ 
+        <Accordion
+          sx={{
             background: 'transparent',
             boxShadow: 'none',
             '&:before': {
@@ -593,7 +593,7 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
             }
           }}
         >
-          <AccordionSummary 
+          <AccordionSummary
             expandIcon={<ExpandMore />}
             sx={{
               background: 'linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1))',
@@ -684,7 +684,7 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
                       🎯 Add Filter Conditions (Optional)
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      Enter simple conditions like "price {'<'} 500" or complex XPath expressions like "not(DeliveryType='ZLR')" to control the generated data.
+                      Enter simple conditions like "price {'<'} 500" or complex XPath expressions like &quot;not(DeliveryType=&quot;ZLR'&quot;) to control the generated data.
                     </Typography>
                   </Box>
                 </Box>
@@ -744,7 +744,7 @@ export default function PayloadGeneratorComponent({ onClose = null }) {
                       ✨ Generate & Download
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      Click "Generate Payload" to create beautiful, valid payloads with realistic dummy data. Copy to clipboard or download instantly!
+                      Click &quot;Generate Payload&quot; to create beautiful, valid payloads with realistic dummy data. Copy to clipboard or download instantly!
                     </Typography>
                   </Box>
                 </Box>

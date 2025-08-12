@@ -53,7 +53,7 @@ export default function PayloadValidator({ onClose = null }) {
     setTimeout(() => {
       try {
         const trimmedContent = payloadContent.trim();
-        
+
         // Auto-detect format if set to auto
         let detectedType = payloadType;
         if (payloadType === 'auto') {
@@ -79,15 +79,15 @@ export default function PayloadValidator({ onClose = null }) {
           const parser = new DOMParser();
           const doc = parser.parseFromString(trimmedContent, 'application/xml');
           const errors = doc.getElementsByTagName('parsererror');
-          
+
           if (errors.length > 0) {
             const errorText = errors[0].textContent || 'Invalid XML structure';
             throw new Error(errorText);
           }
-          
+
           // Count elements for additional stats
           const allElements = doc.getElementsByTagName('*');
-          
+
           setValidationResult({
             isValid: true,
             type: 'success',
@@ -105,7 +105,7 @@ export default function PayloadValidator({ onClose = null }) {
       } catch (error) {
         const detectedType = payloadContent.trim().startsWith('<') ? 'XML' : 'JSON';
         let errorMessage = error.message;
-        
+
         // Provide more helpful error messages
         if (detectedType === 'JSON') {
           if (errorMessage.includes('Unexpected token')) {
@@ -120,7 +120,7 @@ export default function PayloadValidator({ onClose = null }) {
             errorMessage = 'XML error: Mismatched opening and closing tags';
           }
         }
-        
+
         setValidationResult({
           isValid: false,
           type: 'error',
@@ -139,7 +139,7 @@ export default function PayloadValidator({ onClose = null }) {
       const text = await navigator.clipboard.readText();
       setPayloadContent(text);
       setValidationResult(null);
-      
+
       // Auto-detect format immediately on paste if currently set to auto
       if (payloadType === 'auto') {
         detectAndSetFormat(text);
@@ -161,15 +161,15 @@ export default function PayloadValidator({ onClose = null }) {
     if (!content.trim()) {
       return; // Don't change if empty
     }
-    
+
     const trimmedContent = content.trim();
-    
+
     // Check for XML first (starts with < or <?xml)
     if (trimmedContent.startsWith('<')) {
       setPayloadType('xml');
       return;
     }
-    
+
     // Check for JSON by trying to parse
     try {
       JSON.parse(trimmedContent);
@@ -186,14 +186,14 @@ export default function PayloadValidator({ onClose = null }) {
     const newContent = event.target.value;
     setPayloadContent(newContent);
     setValidationResult(null);
-    
+
     // Only auto-detect format on significant content changes and if currently set to auto
     if (payloadType === 'auto' && newContent.trim().length > 5) {
       // Debounce format detection for typing
       if (window.formatDetectionTimeout) {
         clearTimeout(window.formatDetectionTimeout);
       }
-      
+
       window.formatDetectionTimeout = setTimeout(() => {
         detectAndSetFormat(newContent);
       }, 1000); // 1 second delay for typing
@@ -205,35 +205,35 @@ export default function PayloadValidator({ onClose = null }) {
     let formatted = '';
     let indent = 0;
     const tab = '  '; // 2 spaces for indentation
-    
+
     // Remove extra whitespace
     xml = xml.replace(/>\s*</g, '><');
-    
+
     // Split by tags
     const tokens = xml.split(/(<[^>]*>)/);
-    
+
     tokens.forEach(token => {
       if (token.trim() === '') return;
-      
+
       if (token.startsWith('<')) {
         // This is a tag
         const isClosingTag = token.startsWith('</');
         const isSelfClosing = token.endsWith('/>') || token.includes('xml version') || token.includes('DOCTYPE');
         const isComment = token.startsWith('<!--');
         const isProcessingInstruction = token.startsWith('<?');
-        
+
         if (isClosingTag) {
           indent--;
         }
-        
+
         // Add indentation
         formatted += tab.repeat(Math.max(0, indent)) + token;
-        
+
         // Add newline after tag (except for text content)
         if (!isComment || token.endsWith('-->')) {
           formatted += '\n';
         }
-        
+
         if (!isClosingTag && !isSelfClosing && !isComment && !isProcessingInstruction) {
           indent++;
         }
@@ -250,21 +250,21 @@ export default function PayloadValidator({ onClose = null }) {
         }
       }
     });
-    
+
     return formatted.trim();
   };
 
   const formatPayload = () => {
     if (!payloadContent.trim()) return;
-    
+
     try {
       const trimmedContent = payloadContent.trim();
-      
+
       if (trimmedContent.startsWith('<')) {
         // Format XML using advanced pretty printer
         const parser = new DOMParser();
         const doc = parser.parseFromString(trimmedContent, 'application/xml');
-        
+
         // Check for parsing errors
         const errors = doc.getElementsByTagName('parsererror');
         if (errors.length > 0) {
@@ -320,8 +320,8 @@ export default function PayloadValidator({ onClose = null }) {
           </Box>
         </Box>
         {onClose && (
-          <IconButton 
-            onClick={onClose} 
+          <IconButton
+            onClick={onClose}
             size="large"
             sx={{
               background: 'rgba(0,0,0,0.05)',
@@ -344,7 +344,7 @@ export default function PayloadValidator({ onClose = null }) {
             <Typography variant="h6" gutterBottom fontWeight={600} color="text.primary">
               📝 Payload Content
             </Typography>
-            
+
             <Box sx={{ display: 'flex', gap: 2, mb: 2, alignItems: 'flex-start' }}>
               <FormControl size="small" sx={{ minWidth: 120 }}>
                 <InputLabel>Format</InputLabel>
@@ -378,7 +378,7 @@ export default function PayloadValidator({ onClose = null }) {
                   </MenuItem>
                 </Select>
               </FormControl>
-              
+
               <Button
                 variant="outlined"
                 size="small"
@@ -388,7 +388,7 @@ export default function PayloadValidator({ onClose = null }) {
               >
                 Paste
               </Button>
-              
+
               <Button
                 variant="outlined"
                 size="small"
@@ -398,13 +398,13 @@ export default function PayloadValidator({ onClose = null }) {
               >
                 Clear
               </Button>
-              
+
               <Button
                 variant="contained"
                 size="small"
                 onClick={formatPayload}
                 startIcon={<Code />}
-                sx={{ 
+                sx={{
                   fontWeight: 500,
                   background: 'linear-gradient(45deg, #4caf50 30%, #8bc34a 90%)',
                   color: 'white',
@@ -474,13 +474,13 @@ export default function PayloadValidator({ onClose = null }) {
                   }
                 }}
                 icon={
-                  validationResult.type === 'success' ? <CheckCircle /> : 
-                  validationResult.type === 'error' ? <Error /> : <Warning />
+                  validationResult.type === 'success' ? <CheckCircle /> :
+                    validationResult.type === 'error' ? <Error /> : <Warning />
                 }
               >
                 <Typography variant="subtitle1" fontWeight={600} gutterBottom>
-                  {validationResult.isValid ? 
-                    `✅ Valid ${validationResult.format}` : 
+                  {validationResult.isValid ?
+                    `✅ Valid ${validationResult.format}` :
                     `❌ Invalid ${validationResult.format}`
                   }
                 </Typography>
@@ -488,9 +488,9 @@ export default function PayloadValidator({ onClose = null }) {
                   {validationResult.message}
                 </Typography>
                 {validationResult.error && (
-                  <Typography 
-                    variant="body2" 
-                    sx={{ 
+                  <Typography
+                    variant="body2"
+                    sx={{
                       fontFamily: 'Monaco, Menlo, "Ubuntu Mono", monospace',
                       background: 'rgba(0,0,0,0.1)',
                       p: 1,
@@ -516,34 +516,34 @@ export default function PayloadValidator({ onClose = null }) {
                 <Typography variant="subtitle1" fontWeight={600} gutterBottom color="success.main">
                   📊 Payload Statistics
                 </Typography>
-                
+
                 <Stack spacing={2}>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Typography variant="body2" color="text.secondary">Size:</Typography>
-                    <Chip 
-                      label={`${validationResult.details.size} bytes`} 
-                      size="small" 
-                      color="success" 
+                    <Chip
+                      label={`${validationResult.details.size} bytes`}
+                      size="small"
+                      color="success"
                       variant="outlined"
                     />
                   </Box>
-                  
+
                   <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Typography variant="body2" color="text.secondary">Lines:</Typography>
-                    <Chip 
-                      label={validationResult.details.lines} 
-                      size="small" 
-                      color="success" 
+                    <Chip
+                      label={validationResult.details.lines}
+                      size="small"
+                      color="success"
                       variant="outlined"
                     />
                   </Box>
-                  
+
                   <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Typography variant="body2" color="text.secondary">Characters:</Typography>
-                    <Chip 
-                      label={validationResult.details.characters} 
-                      size="small" 
-                      color="success" 
+                    <Chip
+                      label={validationResult.details.characters}
+                      size="small"
+                      color="success"
                       variant="outlined"
                     />
                   </Box>
@@ -551,10 +551,10 @@ export default function PayloadValidator({ onClose = null }) {
                   {validationResult.details.rootElement && (
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                       <Typography variant="body2" color="text.secondary">Root Element:</Typography>
-                      <Chip 
-                        label={validationResult.details.rootElement} 
-                        size="small" 
-                        color="success" 
+                      <Chip
+                        label={validationResult.details.rootElement}
+                        size="small"
+                        color="success"
                         variant="outlined"
                       />
                     </Box>
@@ -563,10 +563,10 @@ export default function PayloadValidator({ onClose = null }) {
                   {validationResult.details.elementCount && (
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                       <Typography variant="body2" color="text.secondary">XML Elements:</Typography>
-                      <Chip 
-                        label={validationResult.details.elementCount} 
-                        size="small" 
-                        color="success" 
+                      <Chip
+                        label={validationResult.details.elementCount}
+                        size="small"
+                        color="success"
                         variant="outlined"
                       />
                     </Box>
@@ -590,7 +590,7 @@ export default function PayloadValidator({ onClose = null }) {
                   Ready to Validate
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Paste your JSON or XML payload and click "Validate" to check its structure
+                  Paste your JSON or XML payload and click &quot;Validate&quot; to check its structure
                 </Typography>
               </Paper>
             )}
